@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daft Punk-The road to glory</title>
+    <style>
+        #video{
+            z-index: 5;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #inicio{
+            z-index: 5;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            background-color: blanchedalmond;
+            border-radius: 10px;
+            border: 2px solid #4893CF;
+        }
+
+        #jogar{
+            margin-bottom: 20px;
+            margin-right: 10px;
+            width: 150px;
+            height: 40px;
+            font-family: Impact;
+            color: #4893CF;
+            font-size: 15px;
+        }
+        
+        #instrucoes{
+            margin-bottom: 20px;
+            margin-left: 10px;
+            width: 150px;
+            height: 40px;
+            font-family: Impact;
+            color: #4893CF;
+            font-size: 15px;
+        }
+        #divInstrucoes{
+            display: none;
+            z-index: 5;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            background-color: blanchedalmond;
+            border-radius: 10px;
+            border: 2px solid #4893CF;
+        }
+        #imagemInstrucoes, #imagemLogo{
+            padding-top: 15px;
+        }
+        p{
+            font-family: Arial;
+            font-size: 15px;
+            line-height: 1.5;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        #voltar{
+            margin-bottom: 20px;
+            margin-right: 10px;
+            width: 150px;
+            height: 40px;
+            font-family: Impact;
+            color: #4893CF;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <video controls muted autoplay="autoplay" loop id="video" src="recursos/Daft Punk-The road to glory.mp4" type="video/mp4" width="1000" height="600"></video>
+    <div id="inicio">
+        <img id="imagemLogo" src="recursos/logo.png" alt="logo"><br><br>
+        <center>
+        <button id="jogar" onclick="jogar()">Jogar</button>
+        <button id="instrucoes" onclick="instrucoes()">Instruções</button>
+        </center>
+    </div>
+
+    <div id="divInstrucoes">
+        <center>
+        <img id="imagemInstrucoes" src="recursos/instrucoes.png" alt="Instruções">
+        
+        <p>Apanha as notas musicais e evita os inimigos ou salta em cima deles para os matar.<br>Tenta chegar o mais rápido possível ao MUSIC STUDIO para produzir o álbum de clássicos.</p>
+
+        <button id="voltar" onclick="voltar()">Voltar</button>
+        </center>
+    </div>
+
+
+    <script>
+        function jogar(){
+            window.location.href = "DaftPunk_Game.html"
+        }
+
+        function instrucoes(){
+            inicio.style.display = "none";
+            divInstrucoes.style.display = "block";
+        }
+
+        function voltar(){
+            inicio.style.display = "block";
+            divInstrucoes.style.display = "none";
+        }
+
+    </script>
+</body>
+</html>

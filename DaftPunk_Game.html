@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Daft Punk-The road to glory</title>
+    <style>
+        #recursos {
+            display: none;
+        }
+
+        #tela {
+            display: block;
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /*
+            width: 100vw;
+            height: 100vh;
+            */
+        }
+        #imagemMusica1{
+            display: none;
+            z-index: 1;
+            width: 10%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #imagemMusica2{
+            display: none;
+            z-index: 1;
+            width: 10%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #imagemMusica3{
+            display: none;
+            z-index: 1;
+            width: 10%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #imagemMusica4{
+            display: none;
+            z-index: 1;
+            width: 10%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #pausa{
+            z-index: 2;
+            background-color: blanchedalmond;
+            border-radius: 10px;
+            border: 2px solid #4893CF;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #tirarSom{
+            width: 60px;
+            height: 60px;
+            background-color: #4893CF;
+            border: 1px solid #4893CF;
+            border-radius: 5px;
+            background-image: url("recursos/som1.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+        #colocarSom{
+            width: 60px;
+            height: 60px;
+            background-color: #4893CF;
+            border: 2px solid black;
+            border-radius: 5px;
+            background-image: url("recursos/som2.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+        #voltarJogar{
+            width: 60px;
+            height: 60px;
+            background-color: #4893CF;
+            border: 1px solid #4893CF;
+            border-radius: 5px;
+            background-image: url("recursos/play1.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+        #voltarInicio{
+            width: 60px;
+            height: 60px;
+            background-color: #4893CF;
+            border: 1px solid #4893CF;
+            border-radius: 5px;
+            background-image: url("recursos/home1.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+        #recomecarJogar{
+            width: 60px;
+            height: 60px;
+            background-color: #4893CF;
+            border: 1px solid #4893CF;
+            border-radius: 5px;
+            background-image: url("recursos/reload.png");
+            background-size: 100%;
+            background-repeat: no-repeat;
+            cursor: pointer;
+            margin-right: 25px;
+        }
+
+        #botoes{
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+        #imagemLogo{
+            padding-top: 10px;
+        }
+
+        #final{
+            background-color: blanchedalmond;
+            display: none;
+            z-index: 3;
+            
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #imagemGanhar{
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        #escreveNome{
+            padding-left: auto;
+            padding-right: auto;
+            font-family: Impact;
+        }
+
+        #nome{
+            border: 1px solid #4893CF;
+            border-radius: 2px;
+            height: 20px;
+        }
+
+        #verRanking{
+            margin-bottom: 20px;
+            width: 150px;
+            height: 40px;
+            font-family: Impact;
+            color: #4893CF;
+            font-size: 15px;
+        }
+
+        #perder{
+            z-index: 2;
+            background-color: blanchedalmond;
+            border-radius: 10px;
+            border: 2px solid #4893CF;
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #divFinal{
+            z-index: 6;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); 
+            background-color: blanchedalmond;
+            border-radius: 10px;
+            border: 2px solid #4893CF;
+            display: none;
+        }
+
+        #divFinal2{
+            display: flex;
+        }
+      
+        #playList{
+            padding-top: 20px;
+            padding-right: 45px;
+            padding-bottom: 20px;
+        }
+
+        #rankingCompleto{
+            padding-top: 20px;
+            padding-left: 45px;
+            padding-right: 80px;  
+            padding-bottom: 20px;
+        }
+
+        #imgRank{
+            width: 100%;
+        }
+
+        #imgPlayList{
+            width: 60%;
+            padding-bottom: 20px;
+        }
+
+        #botoesFinais{
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+
+        #rank1, #rank2, #rank3, #rank4, #rank5{
+            font-family: Impact;
+        }
+
+    </style>
+    <script src="Ludoteca.js"></script>
+    <script>
+        var tela;
+        var contexto;
+        var continua;
+        var contador;
+        var novoContadorTempo;
+        var novoContadorTempoRank;
+        var fundo;
+
+        var racioX;
+        var racioY;
+
+        var ratoX;
+        var ratoY;
+
+        var fim = 0;
+
+        //Personagem e elementos da personagem
+        var personagem1;
+        var velocidade;
+        var gravidade;
+        var angulo;
+        var salta;
+        var contadorColisoes = 100;
+
+        //Notas musicais
+        var notaLaranja;
+        var numeroNotasLaranja = 0;
+
+        var notaRosa;
+        var numeroNotasRosa = 0;
+
+        var notaVerde;
+        var numeroNotasVerde = 0;
+
+        var notaAzul;
+        var numeroNotasAzul = 0;
+
+        //Fantasmas
+        var fantasmas;
+
+        //Nuvens
+        var nuvem;
+
+        //Cenário
+        var cenario;
+
+        //Plataformas
+        var plataformas;
+
+        //Vidas
+        var vida;
+        var numeroVidas = 3;
+        var pos;
+
+        //Contagem Notas
+        var nota1;
+        var nota2;
+        var nota3;
+        var nota4;
+
+
+
+        //Sons
+        var aroundTheWorldPeq;
+        var harderBetterFasterPeq;
+        var oneMoreTimePeq;
+        var getLuckyPeq;
+        var saltar;
+        var apanharNota;
+        var ganharVida;
+        var perderVida;
+
+        //Premios
+        var premio;
+
+        //Limites
+        var limiteEsq;
+        var limiteDir;
+        var margemEsq;
+        var margemDir;
+
+        //Cronometro
+        var relogio;
+        var contadorTempo = 0;
+        var tempos;
+
+        //Botões
+        var botaoPausa;
+
+        //casa
+        var casa;
+
+        //...
+
+        function inicia() {
+            tela = new Tela(document.getElementById("tela"));
+            contexto = tela.contexto;
+            continua = true;
+            contador = 0;
+            salta = false;
+
+            setInterval(function(){ contadorTempo++; }, 1000);
+            console.log("tempo funcao inicia: " + contadorTempo);
+
+            fundo = new Imagem(0 , 0 , document.getElementById("fundo"));
+
+            relogio = new Imagem(465, 8, document.getElementById("relogio"));
+
+            botaoPausa = new Imagem(900, 8, document.getElementById("botaoPausa"));
+
+            casa = new Array()
+            casa.push(new Imagem(15395, 250, document.getElementById("casa")));
+
+
+            nota1 = new Imagem(10, 60, document.getElementById("notaLaranja"));
+            nota2 = new Imagem(10, 60, document.getElementById("notaRosa"));
+            nota3 = new Imagem(10, 60, document.getElementById("notaVerde"));
+            nota4 = new Imagem(10, 60, document.getElementById("notaAzul"));
+
+            cenario = new Array();
+            cenario.push(new Imagem(0,550, document.getElementById("chao")));     // 0
+            cenario.push(new Imagem(750,550, document.getElementById("chao2")));  // 1
+            cenario.push(new Imagem(1370,550, document.getElementById("chao3"))); // 2
+            cenario.push(new Imagem(1930,550, document.getElementById("chao4"))); // 3
+            cenario.push(new Imagem(2350,550, document.getElementById("chao")));  // 4
+
+            cenario.push(new Imagem(3150,550, document.getElementById("chao4"))); // 5
+            cenario.push(new Imagem(4600,550, document.getElementById("chao2"))); // 6
+            cenario.push(new Imagem(5270,550, document.getElementById("chao4"))); // 7
+            cenario.push(new Imagem(5730,550, document.getElementById("chao4"))); // 8
+            cenario.push(new Imagem(6150,550, document.getElementById("chao"))); // 9
+            cenario.push(new Imagem(7850,550, document.getElementById("chao4"))); // 10
+            cenario.push(new Imagem(8270,550, document.getElementById("chao2"))); // 11
+            cenario.push(new Imagem(9480,550, document.getElementById("chao2"))); // 12
+            cenario.push(new Imagem(10150,550, document.getElementById("chao4"))); // 13
+            cenario.push(new Imagem(14730,550, document.getElementById("chao4"))); // 14
+            cenario.push(new Imagem(15150,550, document.getElementById("chao2"))); // 15
+
+
+            plataformas = new Array();
+            plataformas.push(new Imagem(910,420, document.getElementById("plataforma3")));   // 0
+            plataformas.push(new Imagem(1370,290, document.getElementById("plataforma4")));  // 1
+            plataformas.push(new Imagem(1050,160, document.getElementById("plataforma4")));  // 2
+            plataformas.push(new Imagem(590,160, document.getElementById("plataforma3")));   // 3
+            plataformas.push(new Imagem(1810,160, document.getElementById("plataforma2")));  // 4
+            plataformas.push(new Imagem(2470,290, document.getElementById("plataforma4")));  // 5
+            plataformas.push(new Imagem(2630,420, document.getElementById("plataforma4")));  // 6
+
+            plataformas.push(new Imagem(3520,420, document.getElementById("plataforma4")));  // 7
+            plataformas.push(new Imagem(3520,160, document.getElementById("plataforma4")));  // 8
+            plataformas.push(new Imagem(3840,290, document.getElementById("plataforma4")));  // 9
+            plataformas.push(new Imagem(3890,160, document.getElementById("plataforma4")));  // 10
+            plataformas.push(new Imagem(4940,290, document.getElementById("plataforma2")));  // 11
+            plataformas.push(new Imagem(5650,420, document.getElementById("plataforma4")));  // 12
+            plataformas.push(new Imagem(4750,160, document.getElementById("plataforma2")));  // 13
+            plataformas.push(new Imagem(4230,160, document.getElementById("plataforma4")));  // 14
+            plataformas.push(new Imagem(6470,420, document.getElementById("plataforma")));   // 15
+
+            plataformas.push(new Imagem(6100,290, document.getElementById("plataforma4")));  // 16
+            plataformas.push(new Imagem(6600,160, document.getElementById("plataforma2")));  // 17
+            plataformas.push(new Imagem(7310,290, document.getElementById("plataforma3")));  // 18
+            plataformas.push(new Imagem(7820,290, document.getElementById("plataforma3")));  // 19
+            plataformas.push(new Imagem(8450,160, document.getElementById("plataforma2")));  // 20
+            plataformas.push(new Imagem(8790,420, document.getElementById("plataforma4")));  // 21
+            plataformas.push(new Imagem(9160,290, document.getElementById("plataforma2")));  // 22
+
+            plataformas.push(new Imagem(10200,290, document.getElementById("plataforma4")));  // 23
+            plataformas.push(new Imagem(10570,420, document.getElementById("plataforma3")));  // 24
+            plataformas.push(new Imagem(10570,160, document.getElementById("plataforma3")));  // 25
+            plataformas.push(new Imagem(11080,290, document.getElementById("plataforma4")));  // 26
+            plataformas.push(new Imagem(11450,160, document.getElementById("plataforma2")));  // 27
+            plataformas.push(new Imagem(11600,420, document.getElementById("plataforma4")));  // 28
+            plataformas.push(new Imagem(11920,290, document.getElementById("plataforma4")));  // 29
+            plataformas.push(new Imagem(12290,420, document.getElementById("plataforma3")));  // 30
+            plataformas.push(new Imagem(12800,290, document.getElementById("plataforma4")));  // 31
+            plataformas.push(new Imagem(13170,160, document.getElementById("plataforma2")));  // 32
+            plataformas.push(new Imagem(13880,290, document.getElementById("plataforma4")));  // 33
+            plataformas.push(new Imagem(14250,160, document.getElementById("plataforma4")));  // 34
+            plataformas.push(new Imagem(14360,420, document.getElementById("plataforma4")));  // 35
+            plataformas.push(new Imagem(14620,160, document.getElementById("plataforma2")));  // 36
+
+
+            
+
+            
+            personagem1 = new ImagemAnimada(0, 0, document.getElementById("sprite1"), 3, 0);
+            velocidade = 4;
+            gravidade = 9.8;
+            angulo = 0;
+
+
+            notaLaranja = new Array();
+            notaLaranja.push(new Imagem(600, 500, document.getElementById("notaLaranja")));
+            notaLaranja.push(new Imagem(600, 110, document.getElementById("notaLaranja")));
+            notaLaranja.push(new Imagem(1240, 370, document.getElementById("notaLaranja")));
+            notaLaranja.push(new Imagem(1850, 110, document.getElementById("notaLaranja")));
+            notaLaranja.push(new Imagem(1850, 370, document.getElementById("notaLaranja")));
+            notaLaranja.push(new Imagem(2480, 240, document.getElementById("notaLaranja")));
+            notaLaranja.push(new Imagem(2950, 500, document.getElementById("notaLaranja")));
+
+
+            notaRosa = new Array();
+            notaRosa.push(new Imagem(3530, 110, document.getElementById("notaRosa")));
+            notaRosa.push(new Imagem(4030, 240, document.getElementById("notaRosa")));
+            notaRosa.push(new Imagem(4420, 110, document.getElementById("notaRosa")));
+            notaRosa.push(new Imagem(4760, 110, document.getElementById("notaRosa")));
+            notaRosa.push(new Imagem(5400, 240, document.getElementById("notaRosa")));
+            notaRosa.push(new Imagem(5840, 370, document.getElementById("notaRosa")));
+            notaRosa.push(new Imagem(5090, 500, document.getElementById("notaRosa")));
+
+
+            notaVerde = new Array();
+            notaVerde.push(new Imagem(6100,240, document.getElementById("notaVerde")));
+            notaVerde.push(new Imagem(6600,110, document.getElementById("notaVerde")));
+            notaVerde.push(new Imagem(7730,110, document.getElementById("notaVerde")));
+            notaVerde.push(new Imagem(7850,500, document.getElementById("notaVerde")));
+            notaVerde.push(new Imagem(8760,500, document.getElementById("notaVerde")));
+            notaVerde.push(new Imagem(8450,110, document.getElementById("notaVerde")));
+            notaVerde.push(new Imagem(9690,240, document.getElementById("notaVerde")));
+
+            notaAzul = new Array();
+            notaAzul.push(new Imagem(10200,240, document.getElementById("notaAzul")));
+            notaAzul.push(new Imagem(10900,370, document.getElementById("notaAzul")));
+            notaAzul.push(new Imagem(11600,370, document.getElementById("notaAzul")));
+            notaAzul.push(new Imagem(12990,240, document.getElementById("notaAzul")));
+            notaAzul.push(new Imagem(14070,240, document.getElementById("notaAzul")));
+            notaAzul.push(new Imagem(14890,110, document.getElementById("notaAzul")));
+            notaAzul.push(new Imagem(14360,370, document.getElementById("notaAzul")));
+
+
+
+            fantasmas = new Array();
+            fantasmas.push(new Imagem(plataformas[0].x + 10, 370, document.getElementById("fantasma1"))); //0
+            fantasmas.push(new Imagem(cenario[3].x + 10, 500, document.getElementById("fantasma1")));     //1
+
+            fantasmas.push(new Imagem(plataformas[10].x + 10, 110, document.getElementById("fantasma1")));     //2
+            fantasmas.push(new Imagem(plataformas[12].x + 10, 370, document.getElementById("fantasma1")));     //3
+            fantasmas.push(new Imagem(cenario[6].x + 10, 500, document.getElementById("fantasma1")));          //4
+
+            fantasmas.push(new Imagem(plataformas[15].x + 10, 370, document.getElementById("fantasma1")));     //5
+            fantasmas.push(new Imagem(plataformas[17].x + 10, 110, document.getElementById("fantasma1")));     //6
+            fantasmas.push(new Imagem(cenario[10].x + 10, 500, document.getElementById("fantasma1")));          //7
+            fantasmas.push(new Imagem(plataformas[20].x + 10, 110, document.getElementById("fantasma1")));     //8
+            fantasmas.push(new Imagem(plataformas[21].x + 10, 370, document.getElementById("fantasma1")));     //9
+
+            fantasmas.push(new Imagem(plataformas[23].x + 10, 240, document.getElementById("fantasma1")));     //10
+            fantasmas.push(new Imagem(plataformas[27].x + 10, 110, document.getElementById("fantasma1")));     //11
+            fantasmas.push(new Imagem(plataformas[28].x + 10, 370, document.getElementById("fantasma1")));     //12
+            fantasmas.push(new Imagem(plataformas[32].x + 10, 110, document.getElementById("fantasma1")));     //13
+            fantasmas.push(new Imagem(plataformas[33].x + 10, 240, document.getElementById("fantasma1")));     //14
+            fantasmas.push(new Imagem(plataformas[36].x + 10, 110, document.getElementById("fantasma1")));     //15
+
+
+            fantasmas[0].deltaX = 1;
+            fantasmas[1].deltaX = 1;
+
+            fantasmas[2].deltaX = 1.2;
+            fantasmas[3].deltaX = 1.2;
+            fantasmas[4].deltaX = 1.2;
+
+            fantasmas[5].deltaX = 1.4;
+            fantasmas[6].deltaX = 1.4;
+            fantasmas[7].deltaX = 1.4;
+            fantasmas[8].deltaX = 1.4;
+            fantasmas[9].deltaX = 1.4;
+
+
+            fantasmas[10].deltaX = 1.7;
+            fantasmas[11].deltaX = 1.7;
+            fantasmas[12].deltaX = 1.7;
+            fantasmas[13].deltaX = 1.7;
+            fantasmas[14].deltaX = 1.7;
+            fantasmas[15].deltaX = 1.7;
+           
+
+            nuvem = new Array();
+            nuvem.push(new ImagemAnimada(plataformas[4].x + 100, 100, document.getElementById("nuvem"), 6, 15));                               //0
+
+            nuvem.push(new ImagemAnimada(plataformas[7].x + 10, 360, document.getElementById("nuvem"), 6, 15));                                //1
+            nuvem.push(new ImagemAnimada(plataformas[13].x + 100, 100, document.getElementById("nuvem"), 6, 15));                              //2
+
+            nuvem.push(new ImagemAnimada(plataformas[15].x + plataformas[15].largura - 100, 360, document.getElementById("nuvem"), 6, 15));    //3
+            nuvem.push(new ImagemAnimada(plataformas[19].x + 100, 230, document.getElementById("nuvem"), 6, 15));                              //4
+            nuvem.push(new ImagemAnimada(plataformas[22].x + 100, 230, document.getElementById("nuvem"), 6, 15));                              //5
+            nuvem.push(new ImagemAnimada(cenario[12].x + 100, 500, document.getElementById("nuvem"), 6, 15));                                  //6
+
+            nuvem.push(new ImagemAnimada(plataformas[24].x + 100, 360, document.getElementById("nuvem"), 6, 15));                              //7
+            nuvem.push(new ImagemAnimada(plataformas[27].x + plataformas[27].largura - 100, 100, document.getElementById("nuvem"), 6, 15));    //8
+            nuvem.push(new ImagemAnimada(plataformas[29].x + 100, 230, document.getElementById("nuvem"), 6, 15));                              //9
+            nuvem.push(new ImagemAnimada(plataformas[31].x + 100, 230, document.getElementById("nuvem"), 6, 15));                              //10
+            nuvem.push(new ImagemAnimada(plataformas[32].x + plataformas[32].largura - 100, 100, document.getElementById("nuvem"), 6, 15));    //11
+            nuvem.push(new ImagemAnimada(plataformas[35].x + 100, 360, document.getElementById("nuvem"), 6, 15));                              //12
+            
+
+            nuvem[0].deltaX = 1;
+
+            nuvem[1].deltaX = 1.2;
+            nuvem[2].deltaX = 1.2;
+
+            nuvem[3].deltaX = 1.4;
+            nuvem[4].deltaX = 1.4;
+            nuvem[5].deltaX = 1.4;
+            nuvem[6].deltaX = 1.4;
+
+            nuvem[7].deltaX = 1.7;
+            nuvem[8].deltaX = 1.7;
+            nuvem[9].deltaX = 1.7;
+            nuvem[10].deltaX = 1.7;
+            nuvem[11].deltaX = 1.7;
+            nuvem[12].deltaX = 1.7;
+
+
+
+            vida = new Array();
+            vida.push(new Imagem(10, 10, document.getElementById("vida")));
+            vida.push(new Imagem(vida[0].x + vida[0].largura + 10, 10, document.getElementById("vida")));
+            vida.push(new Imagem(vida[1].x + vida[1].largura + 10, 10, document.getElementById("vida")));
+            pos = vida.length;
+
+            premio = new Array();
+            premio.push(new Imagem(cenario[4].x + 100, cenario[4].y - 40, document.getElementById("premio")));
+            premio.push(new Imagem(plataformas[15].x + plataformas[15].largura*0.5 - 20 ,380, document.getElementById("premio")));
+
+
+            margemEsq = 450;
+            margemDir = tela.largura - 450 - personagem1.largura;
+
+            limiteEsq = new Rectangulo(-20, 0, 20, tela.altura, "black");
+            limiteEsq.visivel = false;
+            limiteEsq.activo = true;
+            cenario.push(limiteEsq);
+            
+            limiteDir = new Rectangulo(3000, 0, 20, tela.altura, "black");
+            limiteDir.visivel = false; 
+            limiteDir.activo = true;
+            cenario.push(limiteDir);
+
+            aroundTheWorldPeq = new Som(document.getElementById("aroundTheWorldPeq"));
+            harderBetterFasterPeq = new Som(document.getElementById("harderBetterFasterPeq"));
+            oneMoreTimePeq = new Som(document.getElementById("oneMoreTimePeq"));
+            getLuckyPeq = new Som(document.getElementById("getLuckyPeq"));
+            saltar = new Som(document.getElementById("salta"));
+            apanharNota = new Som(document.getElementById("apanharNota"));
+            ganharVida = new Som(document.getElementById("ganhaVida"));
+            perderVida = new Som(document.getElementById("perdeVida"));
+
+            //...
+            ratoX = 0;
+            ratoY = 0;
+
+            racioX = tela.largura / tela.larguraFinal;
+            racioY = tela.altura / tela.alturaFinal;
+            //...
+            tela.elemento.onmousedown = processaBotaoPremido;
+            tela.elemento.onmouseup = processaBotaoLibertado;
+            tela.elemento.onmousemove = processaMovimento;
+        }
+
+        function desenha() {
+            contexto.clearRect(0, 0, tela.largura, tela.altura);
+            fundo.desenha(tela);
+            relogio.desenha(tela);
+            contexto.fillText(contadorTempo + " s", 500, 30);
+            botaoPausa.desenha(tela);
+            contadorColisoes--;
+
+            if(fim == 0){
+                nota1.desenha(tela);
+                contexto.font = "bold 20px impact";
+                contexto.fillText(numeroNotasLaranja + " x", 40, 90);
+            }
+            if(fim == 1){
+                nota2.desenha(tela);
+                contexto.font = "bold 20px impact";
+                contexto.fillText(numeroNotasRosa + " x", 40, 90);
+                personagem1.imagem = document.getElementById("sprite2");
+            }
+            if(fim == 2){
+                nota3.desenha(tela);
+                contexto.font = "bold 20px impact";
+                contexto.fillText(numeroNotasVerde + " x", 40, 90);
+                personagem1.imagem = document.getElementById("sprite3");
+            }
+            if(fim == 3){
+                nota4.desenha(tela);
+                contexto.font = "bold 20px impact";
+                contexto.fillText(numeroNotasAzul + " x", 40, 90);
+                personagem1.imagem = document.getElementById("sprite4");
+            }
+
+            salta = false;
+
+            // -------------------------------------------------------------------------------------------------Desenha o chao e testa colisões
+            for (var i = 0; i < cenario.length; i++) {
+                cenario[i].desenha(tela);
+                if (personagem1.colide(cenario[i])) {
+                    // em cima
+                    if (personagem1.y + personagem1.altura - Math.abs(personagem1.deltaY) <= cenario[i].y) {
+                        personagem1.y = cenario[i].y - personagem1.altura;
+                        salta = true;
+                    }
+                    // à esquerda
+                    else if (personagem1.x + personagem1.largura - velocidade <= cenario[i].x) {
+                        personagem1.x = cenario[i].x - personagem1.largura - 1;
+                    }
+                    // à direita
+                    else if (personagem1.x - cenario[i].largura + velocidade >= cenario[i].x) {
+                        personagem1.x = cenario[i].x + cenario[i].largura + 1;
+                    }
+                }
+            }
+
+            // -------------------------------------------------------------------------------------------------Desenha o casa e testa colisões
+            for (var c = 0; c < casa.length; c++) {
+                casa[c].desenha(tela);
+                if (personagem1.colide(casa[c])) {
+                    // à esquerda
+                    if (personagem1.x + personagem1.largura - velocidade >= casa[c].x + casa[c].largura*0.5 + 40) {
+                        if(numeroNotasAzul == 7){
+                            personagem1.x = casa[c].x + casa[c].largura*0.5 + 40 - personagem1.largura - 1;
+                            personagem1.visivel = false;
+                            continua = false;
+                            final.style.display= "block";
+                            novoContadorTempoRank = contadorTempo;
+                        }else{
+                            personagem1.x = casa[c].x + casa[c].largura*0.5 + 40 - personagem1.largura - 1; 
+                        }
+                    }
+                }
+            }
+
+            // -------------------------------------------------------------------------------------------------Desenha as Plataformas e testa colisões
+            for(var j = 0; j < plataformas.length; j++){
+                plataformas[j].desenha(tela);
+                if (personagem1.colide(plataformas[j])) {
+                    // em cima
+                    if (personagem1.y + personagem1.altura - Math.abs(personagem1.deltaY) <= plataformas[j].y) {
+                        personagem1.y = plataformas[j].y - personagem1.altura;
+                        salta = true;
+                    }
+                    // à esquerda
+                    else if (personagem1.x + personagem1.largura - velocidade <= plataformas[j].x) {
+                        personagem1.x = plataformas[j].x - personagem1.largura - 1;
+                    }
+                    // à direita
+                    else if (personagem1.x - plataformas[j].largura + velocidade >= plataformas[j].x) {
+                        personagem1.x = plataformas[j].x + plataformas[j].largura + 1;
+                    }
+                    // em baixo
+                    else if (personagem1.y - plataformas[j].altura + Math.abs(personagem1.deltaY) >= plataformas[j].y) {
+                        personagem1.y = plataformas[j].y + plataformas[j].altura + 1;
+                        angulo = 0;
+                    }
+                }
+            }
+
+            // -------------------------------------------------------------------------------------------------Desenha a Personagem e testa colisões
+            personagem1.manipulaAltura = 0.5; 
+            personagem1.desenha(tela);
+            personagem1.deltaY = gravidade * Math.cos(angulo * Math.PI / 180); 
+            if (personagem1.y > tela.altura) {
+                personagem1.y = 0 - personagem1.altura;
+                perderVida.reproduz(true);
+                numeroVidas--;
+                vida.pop();
+            }
+
+            
+            angulo -= 3.5;
+            
+            if (angulo <= 0) {
+                angulo = 0;
+            }
+
+
+            // -------------------------------------------------------------------------------------------------Desenha as Notas Laranjas e testa colisões
+            for(var k = 0; k < notaLaranja.length; k++){
+                notaLaranja[k].desenha(tela);
+                if (personagem1.colide(notaLaranja[k])) {
+                    notaLaranja[k].visivel = false;
+                    notaLaranja[k].activo = false;
+                    numeroNotasLaranja++;
+                    apanharNota.reproduz(true);
+                    if(numeroNotasLaranja == 7){
+                        imagensTempo1()
+                        aroundTheWorldPeq.reproduz(true);
+                        fim++;
+                        limiteDir.x = 4575;
+                    }
+                }
+            }
+
+
+            // -------------------------------------------------------------------------------------------------Desenha as Notas Rosas e testa colisões
+            for(var r = 0; r < notaRosa.length; r++){
+                notaRosa[r].desenha(tela);
+                if (personagem1.colide(notaRosa[r])) {
+                    notaRosa[r].visivel = false;
+                    notaRosa[r].activo = false;
+                    numeroNotasRosa++;
+                    apanharNota.reproduz(true);
+                    if(numeroNotasRosa == 7){
+                        imagensTempo2()
+                        harderBetterFasterPeq.reproduz(true);
+                        fim++;
+                        limiteDir.x = 5480;
+                    }
+                }
+            }
+
+
+            // -------------------------------------------------------------------------------------------------Desenha as Notas Verdes e testa colisões
+            for(var v = 0; v < notaVerde.length; v++){
+                notaVerde[v].desenha(tela);
+                if (personagem1.colide(notaVerde[v])) {
+                    notaVerde[v].visivel = false;
+                    notaVerde[v].activo = false;
+                    numeroNotasVerde++;
+                    apanharNota.reproduz(true);
+                    if(numeroNotasVerde == 7){
+                        imagensTempo3()
+                        oneMoreTimePeq.reproduz(true);
+                        fim++;
+                        limiteDir.x = 8000;
+                    }
+                }
+            }
+
+
+            // -------------------------------------------------------------------------------------------------Desenha as Notas Azuis e testa colisões
+            for(var a = 0; a < notaAzul.length; a++){
+                notaAzul[a].desenha(tela);
+                if (personagem1.colide(notaAzul[a])) {
+                    notaAzul[a].visivel = false;
+                    notaAzul[a].activo = false;
+                    numeroNotasAzul++;
+                    apanharNota.reproduz(true);
+                    if(numeroNotasAzul == 7){
+                        imagensTempo4()
+                        getLuckyPeq.reproduz(true);
+                        fim++;
+                    }
+                }
+            }
+
+
+            // -------------------------------------------------------------------------------------------------Desenha os Fantasmas e testa colisões
+            
+            
+                if(fantasmas[0].x + fantasmas[0].largura >= plataformas[0].x + plataformas[0].largura){
+                    fantasmas[0].deltaX *= -1;
+                    fantasmas[0].imagem = document.getElementById("fantasma2");
+                }
+                else if(fantasmas[0].x <= plataformas[0].x){
+                    fantasmas[0].deltaX *=-1;
+                    fantasmas[0].imagem = document.getElementById("fantasma1");
+                }
+                
+                if(fantasmas[1].x + fantasmas[1].largura >= cenario[3].x + cenario[3].largura){
+                    fantasmas[1].deltaX *= -1;
+                    fantasmas[1].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[1].x <= cenario[3].x){
+                    fantasmas[1].deltaX *=-1;
+                    fantasmas[1].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[2].x + fantasmas[2].largura >= plataformas[10].x + plataformas[10].largura){
+                    fantasmas[2].deltaX *= -1;
+                    fantasmas[2].imagem = document.getElementById("fantasma2");
+                }
+                else if(fantasmas[2].x <= plataformas[10].x){
+                    fantasmas[2].deltaX *=-1;
+                    fantasmas[2].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[3].x + fantasmas[3].largura >= plataformas[12].x + plataformas[12].largura){
+                    fantasmas[3].deltaX *= -1;
+                    fantasmas[3].imagem = document.getElementById("fantasma2");
+                }
+                else if(fantasmas[3].x <= plataformas[12].x){
+                    fantasmas[3].deltaX *=-1;
+                    fantasmas[3].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[4].x + fantasmas[4].largura >= cenario[6].x + cenario[6].largura){
+                    fantasmas[4].deltaX *= -1;
+                    fantasmas[4].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[4].x <= cenario[6].x){
+                    fantasmas[4].deltaX *=-1;
+                    fantasmas[4].imagem = document.getElementById("fantasma1");
+                }
+        
+                if(fantasmas[5].x + fantasmas[5].largura >= plataformas[15].x + plataformas[15].largura){
+                    fantasmas[5].deltaX *= -1;
+                    fantasmas[5].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[5].x <= plataformas[15].x){
+                    fantasmas[5].deltaX *=-1;
+                    fantasmas[5].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[6].x + fantasmas[6].largura >= plataformas[17].x + plataformas[17].largura){
+                    fantasmas[6].deltaX *= -1;
+                    fantasmas[6].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[6].x <= plataformas[17].x){
+                    fantasmas[6].deltaX *=-1;
+                    fantasmas[6].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[7].x + fantasmas[7].largura >= cenario[10].x + cenario[10].largura){
+                    fantasmas[7].deltaX *= -1;
+                    fantasmas[7].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[7].x <= cenario[10].x){
+                    fantasmas[7].deltaX *=-1;
+                    fantasmas[7].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[8].x + fantasmas[8].largura >= plataformas[20].x + plataformas[20].largura){
+                    fantasmas[8].deltaX *= -1;
+                    fantasmas[8].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[8].x <= plataformas[20].x){
+                    fantasmas[8].deltaX *=-1;
+                    fantasmas[8].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[9].x + fantasmas[9].largura >= plataformas[21].x + plataformas[21].largura){
+                    fantasmas[9].deltaX *= -1;
+                    fantasmas[9].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[9].x <= plataformas[21].x){
+                    fantasmas[9].deltaX *=-1;
+                    fantasmas[9].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[10].x + fantasmas[10].largura >= plataformas[23].x + plataformas[23].largura){
+                    fantasmas[10].deltaX *= -1;
+                    fantasmas[10].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[10].x <= plataformas[23].x){
+                    fantasmas[10].deltaX *=-1;
+                    fantasmas[10].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[11].x + fantasmas[11].largura >= plataformas[27].x + plataformas[27].largura){
+                    fantasmas[11].deltaX *= -1;
+                    fantasmas[11].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[11].x <= plataformas[27].x){
+                    fantasmas[11].deltaX *=-1;
+                    fantasmas[11].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[12].x + fantasmas[12].largura >= plataformas[28].x + plataformas[28].largura){
+                    fantasmas[12].deltaX *= -1;
+                    fantasmas[12].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[12].x <= plataformas[28].x){
+                    fantasmas[12].deltaX *=-1;
+                    fantasmas[12].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[13].x + fantasmas[13].largura >= plataformas[32].x + plataformas[32].largura){
+                    fantasmas[13].deltaX *= -1;
+                    fantasmas[13].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[13].x <= plataformas[32].x){
+                    fantasmas[13].deltaX *=-1;
+                    fantasmas[13].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[14].x + fantasmas[14].largura >= plataformas[33].x + plataformas[33].largura){
+                    fantasmas[14].deltaX *= -1;
+                    fantasmas[14].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[14].x <= plataformas[33].x){
+                    fantasmas[14].deltaX *=-1;
+                    fantasmas[14].imagem = document.getElementById("fantasma1");
+                }
+
+                if(fantasmas[15].x + fantasmas[15].largura >= plataformas[36].x + plataformas[36].largura){
+                    fantasmas[15].deltaX *= -1;
+                    fantasmas[15].imagem = document.getElementById("fantasma2")
+                }
+                else if(fantasmas[15].x <= plataformas[36].x){
+                    fantasmas[15].deltaX *=-1;
+                    fantasmas[15].imagem = document.getElementById("fantasma1");
+                }
+
+        
+                for(var z = 0; z < fantasmas.length; z++){
+                fantasmas[z].desenha(tela);
+                if (personagem1.colide(fantasmas[z])) {
+                    // em cima
+                    if (personagem1.y + personagem1.altura - Math.abs(personagem1.deltaY) <= fantasmas[z].y) {
+                        if(contadorColisoes <= 0){
+                            salta = true;
+                            angulo = 140;
+                            saltar.reproduz(true);
+                            fantasmas[z].visivel = false;
+                            fantasmas[z].activo = false;
+                        }    
+                    }
+                    
+                    // à esquerda
+                    else if (personagem1.x + personagem1.largura - velocidade <= fantasmas[z].x) {
+                        if(contadorColisoes <= 0){
+                            numeroVidas--;
+                            vida.pop();
+                            perderVida.reproduz(true);
+                            contadorColisoes = 100;
+                        }
+                    }
+                    // à direita
+                    else if (personagem1.x + velocidade >= fantasmas[z].x + fantasmas[z].largura) {
+                        if(contadorColisoes <=0){
+                            numeroVidas--;
+                            vida.pop();
+                            perderVida.reproduz(true);
+                            contadorColisoes = 100;
+                        }
+                    }
+                }
+            }
+
+            
+            // -------------------------------------------------------------------------------------------------Desenha as Nuvens e testa colisões
+            
+                if(nuvem[0].x + nuvem[0].largura >= plataformas[4].x + plataformas[4].largura){
+                    nuvem[0].deltaX *= -1;
+                }
+                else if(nuvem[0].x <= plataformas[4].x){
+                    nuvem[0].deltaX *=-1;
+                }
+
+                if(nuvem[1].x + nuvem[1].largura >= plataformas[7].x + plataformas[7].largura){
+                    nuvem[1].deltaX *= -1;
+                }
+                else if(nuvem[1].x <= plataformas[7].x){
+                    nuvem[1].deltaX *=-1;
+                }
+
+                if(nuvem[2].x + nuvem[2].largura >= plataformas[13].x + plataformas[13].largura){
+                    nuvem[2].deltaX *= -1;
+                }
+                else if(nuvem[2].x <= plataformas[13].x){
+                    nuvem[2].deltaX *=-1;
+                }
+
+                if(nuvem[3].x + nuvem[3].largura >= plataformas[15].x + plataformas[15].largura){
+                    nuvem[3].deltaX *= -1;
+                }
+                else if(nuvem[3].x <= plataformas[15].x){
+                    nuvem[3].deltaX *=-1;
+                }
+
+                if(nuvem[4].x + nuvem[4].largura >= plataformas[19].x + plataformas[19].largura){
+                    nuvem[4].deltaX *= -1;
+                }
+                else if(nuvem[4].x <= plataformas[19].x){
+                    nuvem[4].deltaX *=-1;
+                }
+
+                if(nuvem[5].x + nuvem[5].largura >= plataformas[22].x + plataformas[22].largura){
+                    nuvem[5].deltaX *= -1;
+                }
+                else if(nuvem[5].x <= plataformas[22].x){
+                    nuvem[5].deltaX *=-1;
+                }
+
+                if(nuvem[6].x + nuvem[6].largura >= cenario[12].x + cenario[12].largura){
+                    nuvem[6].deltaX *= -1;
+                }
+                else if(nuvem[6].x <= cenario[12].x){
+                    nuvem[6].deltaX *=-1;
+                }
+
+                if(nuvem[7].x + nuvem[7].largura >= plataformas[24].x + plataformas[24].largura){
+                    nuvem[7].deltaX *= -1;
+                }
+                else if(nuvem[7].x <= plataformas[24].x){
+                    nuvem[7].deltaX *=-1;
+                }
+
+                if(nuvem[8].x + nuvem[8].largura >= plataformas[27].x + plataformas[27].largura){
+                    nuvem[8].deltaX *= -1;
+                }
+                else if(nuvem[8].x <= plataformas[27].x){
+                    nuvem[8].deltaX *=-1;
+                }
+
+                if(nuvem[9].x + nuvem[9].largura >= plataformas[29].x + plataformas[29].largura){
+                    nuvem[9].deltaX *= -1;
+                }
+                else if(nuvem[9].x <= plataformas[29].x){
+                    nuvem[9].deltaX *=-1;
+                }
+
+                if(nuvem[10].x + nuvem[10].largura >= plataformas[31].x + plataformas[31].largura){
+                    nuvem[10].deltaX *= -1;
+                }
+                else if(nuvem[10].x <= plataformas[31].x){
+                    nuvem[10].deltaX *=-1;
+                }
+
+                if(nuvem[11].x + nuvem[11].largura >= plataformas[32].x + plataformas[32].largura){
+                    nuvem[11].deltaX *= -1;
+                }
+                else if(nuvem[11].x <= plataformas[32].x){
+                    nuvem[11].deltaX *=-1;
+                }
+
+                if(nuvem[12].x + nuvem[12].largura >= plataformas[35].x + plataformas[35].largura){
+                    nuvem[12].deltaX *= -1;
+                }
+                else if(nuvem[12].x <= plataformas[35].x){
+                    nuvem[12].deltaX *=-1;
+                }
+
+                for(var n = 0; n < nuvem.length; n++){
+                nuvem[n].desenha(tela);
+                if (personagem1.colide(nuvem[n])) {
+                    // em cima
+                    if (personagem1.y + personagem1.altura - Math.abs(personagem1.deltaY) <= nuvem[n].y) {
+                        if(contadorColisoes <=0){
+                            salta = true;
+                            angulo = 140;
+                            saltar.reproduz(true);
+                            nuvem[n].visivel = false;
+                            nuvem[n].activo = false;
+                        }
+                    }
+                    // à esquerda
+                    else if (personagem1.x + personagem1.largura - velocidade <= nuvem[n].x) {
+                        if(contadorColisoes <=0){
+                            numeroVidas--;
+                            vida.pop();
+                            perderVida.reproduz(true);
+                            contadorColisoes = 100;
+                        }
+                    }
+                    // à direita
+                    else if (personagem1.x + velocidade >= nuvem[n].x + nuvem[n].largura) {
+                        if(contadorColisoes <=0){
+                            numeroVidas--;
+                            vida.pop();
+                            perderVida.reproduz(true);
+                            contadorColisoes = 100;
+                        }
+                    }
+                }
+                
+            }
+
+            // -------------------------------------------------------------------------------------------------Desenha os Premios e testa colisões
+            for(var p = 0; p < premio.length; p++){
+                premio[p].desenha(tela);
+                if(personagem1.colide(premio[p])){
+                    premio[p].visivel = false;
+                    premio[p].activo = false;
+                    ganharVida.reproduz(true);
+                    numeroVidas++;
+                    vida.push(new Imagem(vida[vida.length-1].x + vida[0].largura + 10, 10, document.getElementById("vida"))); 
+
+                }
+            }
+
+            // -------------------------------------------------------------------------------------------------Limites da direita e esquerda
+            if(personagem1.x <= margemEsq){
+                if(limiteEsq.x+ limiteEsq.largura < 0){                                    
+                    personagem1.x = margemEsq;
+                    for(var i = 0; i < cenario.length; i++){
+                        cenario[i].x += -personagem1.deltaX;
+                    }
+                    for(var j = 0; j < plataformas.length; j++){
+                        plataformas[j].x += -personagem1.deltaX;
+                    }
+                    for(var k = 0; k < notaLaranja.length; k++){
+                        notaLaranja[k].x += -personagem1.deltaX;
+                    }
+                    for(var z = 0; z < fantasmas.length; z++){
+                        fantasmas[z].x += -personagem1.deltaX;
+                    }
+                    for(var n = 0; n < nuvem.length; n++){
+                        nuvem[n].x += -personagem1.deltaX;
+                    }
+                    for(var p = 0; p < premio.length; p++){
+                        premio[p].x += -personagem1.deltaX;
+                    }
+                    for(var r = 0; r < notaRosa.length; r++){
+                        notaRosa[r].x += -personagem1.deltaX;
+                    }
+                    for(var v = 0; v < notaVerde.length; v++){
+                        notaVerde[v].x += -personagem1.deltaX;
+                    }
+                    for(var a = 0; a < notaAzul.length; a++){
+                        notaAzul[a].x += -personagem1.deltaX;
+                    }
+                    for(var c = 0; c < casa.length; c++){
+                        casa[c].x += -personagem1.deltaX;
+                    }
+                }
+            }
+
+            if(personagem1.x >= margemDir){
+                if (limiteDir.x > tela.largura) {
+                    personagem1.x = margemDir;
+                    for(var i = 0; i < cenario.length; i++){
+                        cenario[i].x += -personagem1.deltaX;
+                    }
+                    for(var j = 0; j < plataformas.length; j++){
+                        plataformas[j].x += -personagem1.deltaX;
+                    }
+                    for(var k = 0; k < notaLaranja.length; k++){
+                        notaLaranja[k].x += -personagem1.deltaX;
+                    }
+                    for(var z = 0; z < fantasmas.length; z++){
+                        fantasmas[z].x += -personagem1.deltaX;
+                    }
+                    for(var n = 0; n < nuvem.length; n++){
+                        nuvem[n].x += -personagem1.deltaX;
+                    }
+                    for(var p = 0; p < premio.length; p++){
+                        premio[p].x += -personagem1.deltaX;
+                    }
+                    for(var r = 0; r < notaRosa.length; r++){
+                        notaRosa[r].x += -personagem1.deltaX;
+                    }
+                    for(var v = 0; v < notaVerde.length; v++){
+                        notaVerde[v].x += -personagem1.deltaX;
+                    }
+                    for(var a = 0; a < notaAzul.length; a++){
+                        notaAzul[a].x += -personagem1.deltaX;
+                    }
+                    for(var c = 0; c < casa.length; c++){
+                        casa[c].x += -personagem1.deltaX;
+                    }
+                }
+            }
+
+            //console.log("limite: " + limiteDir.x);
+            //console.log("tempo: " + contadorTempo);
+            //console.log("vidas: " + numeroVidas);
+            //console.log(contadorColisoes);
+
+
+            // -------------------------------------------------------------------------------------------------Desenha as Vidas
+            if(numeroVidas == 0){
+                continua = false
+                perder.style.display = "block";
+            }
+
+            //...
+            for(var v = 0; v < vida.length; v++){
+                vida[v].desenha(tela);
+            }
+            if (continua) {
+                contador++;
+                window.requestAnimationFrame(desenha);  
+            }
+
+            
+        }
+
+        
+        // ------------------------------------------------------------------------------------------------- Voltar a jogar depois de pausa
+        function voltarJogar(){
+            continua = true;
+            pausa.style.display = "none";
+            contadorTempo = novoContadorTempo;
+            //inicia()
+            desenha()
+        }
+
+        // ------------------------------------------------------------------------------------------------- Voltar ao inicio depois de pausa
+        function voltarInicio(){
+            window.location.href = "index.html"
+        }
+
+        // ------------------------------------------------------------------------------------------------- Voltar ao inicio depois de pausa
+        function recomecarJogo(){
+            location.reload();
+        }
+
+        // ------------------------------------------------------------------------------------------------- Tirar Som
+        function tiraSom(){
+            tirarSom.style.border = "2px solid black";
+            colocarSom.style.border = "1px solid #4893CF";
+            aroundTheWorldPeq.volume = 0;
+            harderBetterFasterPeq.volume = 0;
+            oneMoreTimePeq.volume = 0;
+            getLuckyPeq.volume = 0;
+            saltar.volume = 0;
+            apanharNota.volume = 0;
+            ganharVida.volume = 0;
+            perderVida.volume = 0;
+            
+        }
+
+        // ------------------------------------------------------------------------------------------------- Pôr Som
+        function porSom(){
+            colocarSom.style.border = "2px solid black";
+            tirarSom.style.border = "1px solid #4893CF";
+            aroundTheWorldPeq.volume = 1;
+            harderBetterFasterPeq.volume = 1;
+            oneMoreTimePeq.volume = 1;
+            getLuckyPeq.volume = 1;
+            saltar.volume = 1;
+            apanharNota.volume = 1;
+            ganharVida.volume = 1;
+            perderVida.volume = 1;
+        }
+
+
+        // ------------------------------------------------------------------------------------------------- Imagem após apanhar as notas/mudança de nível
+        function imagensTempo1(){
+            imagemMusica1.style.display = "block"
+            setTimeout(function(){
+                imagemMusica1.style.display = "none"
+            }, 2000);
+        }
+        function imagensTempo2(){
+            imagemMusica2.style.display = "block"
+            setTimeout(function(){
+                imagemMusica2.style.display = "none"
+            }, 2000);
+        }
+        function imagensTempo3(){
+            imagemMusica3.style.display = "block"
+            setTimeout(function(){
+                imagemMusica3.style.display = "none"
+            }, 2000);
+        }
+        function imagensTempo4(){
+            imagemMusica4.style.display = "block"
+            setTimeout(function(){
+                imagemMusica4.style.display = "none"
+            }, 2000);
+        }
+
+        // ------------------------------------------------------------------------------------------------- Ranking
+
+        function sortfunction(a, b) {
+            return (a.tempo - b.tempo)
+        }
+
+        function rank(){
+            final.style.display = "none";
+            divFinal.style.display = "block";
+
+            var ranking = localStorage.getItem("Ranking");
+            ranking = JSON.parse(ranking);
+
+            if(ranking == null){
+                ranking = [];
+            }
+
+            var nome= document.getElementById("nome").value;
+            var segundos = novoContadorTempoRank;
+
+            ranking.push({jogador: nome, tempo: segundos});
+
+            ranking = ranking.sort(sortfunction);
+
+            localStorage.setItem("Ranking", JSON.stringify(ranking));
+
+
+            document.getElementById("rank1").innerHTML ="1º: " + ranking[0].jogador  + " " + ranking[0].tempo + "Segundos";
+
+            document.getElementById("rank2").innerHTML ="2º: " + ranking[1].jogador  + " " + ranking[1].tempo + "Segundos";
+
+            document.getElementById("rank3").innerHTML ="3º: " + ranking[2].jogador  + " " + ranking[2].tempo + "Segundos";
+
+            document.getElementById("rank4").innerHTML ="4º: " + ranking[3].jogador  + " " + ranking[3].tempo + "Segundos";
+
+            document.getElementById("rank5").innerHTML ="5º: " + ranking[4].jogador  + " " + ranking[4].tempo + "Segundos";
+        }
+
+        
+
+
+        function processaBotaoPremido(rato) {
+            ratoX = Math.floor(rato.offsetX * racioX);
+            ratoY = Math.floor(rato.offsetY * racioY);
+
+            if (botaoPausa.contemPonto(ratoX, ratoY)) {
+                    novoContadorTempo = contadorTempo;
+                    continua = false;
+                    pausa.style.display = "block"; 
+                }
+            
+            //...
+        }
+
+        function processaMovimento(rato) {
+            ratoX = Math.floor(rato.offsetX * racioX);
+            ratoY = Math.floor(rato.offsetY * racioY);
+            if (botaoPausa.contemPonto(ratoX, ratoY)) {
+                    tela.elemento.style.cursor = "pointer";
+                }
+            
+        }
+
+        function processaBotaoLibertado(rato) {
+            ratoX = Math.floor(rato.offsetX * racioX);
+            ratoY = Math.floor(rato.offsetY * racioY);
+            //...
+        }
+
+        function processaTeclaPremida(tecla) {
+            if (tecla.keyCode == 32) {  // barra de espaços
+                //...
+            }
+            if (tecla.keyCode == 37) {  // esquerda
+                personagem1.deltaX = -velocidade;
+                personagem1.iteracoes = 8;
+                personagem1.crop = 1;
+                //...
+            }
+            if (tecla.keyCode == 38) {  // cima
+                if (salta) {
+                    salta = false;
+                    angulo = 180;
+                    saltar.reproduz(true);
+                }
+                
+                //...
+            }
+            if (tecla.keyCode == 39) {  // direita
+                personagem1.deltaX = velocidade;
+                personagem1.iteracoes = 8;
+                personagem1.crop = 0;
+                //...
+            }
+            if (tecla.keyCode == 40) {  // baixo
+                //...
+            }
+        }
+
+        function processaTeclaLibertada(tecla) {
+            if (tecla.keyCode == 32) {
+                //...
+            }
+            if ((tecla.keyCode == 37) || (tecla.keyCode == 39)) {
+                personagem1.deltaX = 0;
+                personagem1.iteracoes = 0;
+                //...
+            }
+            if ((tecla.keyCode == 38) || (tecla.keyCode == 40)) {
+                //...
+            }
+        }
+
+        window.onload = function () {
+            inicia();
+            desenha();
+        }
+        window.onkeydown = processaTeclaPremida;
+        window.onkeyup = processaTeclaLibertada;
+
+        
+    </script>
+</head>
+
+<body>
+    <img id="imagemMusica1" src="recursos/musica1.png" alt="musica1">
+    <img id="imagemMusica2" src="recursos/musica2.png" alt="musica2">
+    <img id="imagemMusica3" src="recursos/musica3.png" alt="musica3">
+    <img id="imagemMusica4" src="recursos/musica4.png" alt="musica4">
+
+
+    <div id="divFinal">
+        <center>
+        <div id="divFinal2">
+          <div id="playList">
+            <img id="imgPlayList" src="recursos/frase.png" alt="Ranking">
+            <audio controls id="aroundTheWorld" src="recursos/sons/AroundTheWorld.mp3"></audio><br>
+            <audio controls id="harderBetterFaster" src="recursos/sons/HarderBetterFaster.mp3"></audio><br>
+            <audio controls id="oneMoreTime" src="recursos/sons/OneMoreTime.mp3"></audio><br>
+            <audio controls id="getLucky" src="recursos/sons/GetLucky.mp3"></audio><br>
+          </div>
+  
+          <div id="rankingCompleto">
+            <img id="imgRank" src="recursos/rank.png" alt="Ranking">
+            <p id="rank1">1º</p>
+            <p id="rank2">2º</p>
+            <p id="rank3">3º</p>
+            <p id="rank4">4º</p>
+            <p id="rank5">5º</p>
+          </div>
+        </div>
+        <div id="botoesFinais">
+          <button id="recomecarJogar" onclick="recomecarJogo()"></button>
+          <button id="voltarInicio" onclick="voltarInicio()"></button>
+        </div>
+      </center>
+      </div>
+    
+    <div id="pausa">
+        
+        <img id="imagemLogo" src="recursos/logo.png" alt="logo">
+        <center>
+        <div id="botoes">
+            <button id="tirarSom" onclick="tiraSom()"></button>
+            <button id="colocarSom" onclick="porSom()"></button>
+            <button id="voltarJogar" onclick="voltarJogar()"></button>
+            <button id="recomecarJogar" onclick="recomecarJogo()"></button>
+            <button id="voltarInicio" onclick="voltarInicio()"></button>
+        </div>
+        </center>
+    </div>
+
+    <div id="perder">
+        
+        <img id="imagemPerder" src="recursos/perder.png" alt="logo">
+        <center>
+        <div id="botoes">
+            <button id="recomecarJogar" onclick="recomecarJogo()"></button>
+            <button id="voltarInicio" onclick="voltarInicio()"></button>
+        </div>
+        </center>
+    </div>
+
+    <div id="final">
+        <center>
+        <img id="imagemGanhar" src="recursos/ganhar.png" alt="ganhar"><br>
+        
+        <div id="botoes2">
+            <p id="escreveNome">Escreve o teu nome:</p>
+            <input type="text" id="nome"><br><br>
+            <button id="verRanking" onclick="rank()" >Ver Ranking</button>
+        </div>
+        </center>
+    </div>
+
+    <canvas id="tela" width="1000" height="600">O seu <em>browser</em> não suporta o elemento<code>canvas</code>!</canvas>
+
+    <div id="recursos">
+        <img id="fundo" src="recursos/fundo2.png" alt="fundo">
+
+        <img id="sprite1" src="recursos/Sprite1.png" alt="sprite1">
+        <img id="sprite2" src="recursos/Sprite2.png" alt="sprite2">
+        <img id="sprite3" src="recursos/Sprite3.png" alt="sprite3">
+        <img id="sprite4" src="recursos/Sprite4.png" alt="sprite4">
+
+
+        <img id="chao" src="recursos/chao.png" alt="chao">
+        <img id="chao2" src="recursos/chao2.png" alt="chao2">
+        <img id="chao3" src="recursos/chao3.png" alt="chao3">
+        <img id="chao4" src="recursos/chao4.png" alt="chao4">
+
+        <img id="plataforma" src="recursos/plataformas.jpeg" alt="Plataforma">
+        <img id="plataforma2" src="recursos/plataformas2.jpeg" alt="Plataforma">
+        <img id="plataforma3" src="recursos/plataformas3.jpeg" alt="Plataforma">
+        <img id="plataforma4" src="recursos/plataformas4.jpeg" alt="Plataforma">
+
+        <img id="notaLaranja" src="recursos/notaLaranja.png" alt="notaLaranja">
+        <img id="notaRosa" src="recursos/notaRosa.png" alt="notaRosa">
+        <img id="notaVerde" src="recursos/notaVerde.png" alt="notaVerde">
+        <img id="notaAzul" src="recursos/notaAzul.png" alt="notaAzul">
+
+        <img id="fantasma1" src="recursos/Fantasma1.png" alt="Fantasma1">
+        <img id="fantasma2" src="recursos/Fantasma2.png" alt="Fantasma2">
+
+        <img id="nuvem" src="recursos/Sprite_nuvem.png" alt="nuvem">
+
+        <img id="vida" src="recursos/Vida.png" alt="vida">
+
+        <img id="premio" src="recursos/Premio.png" alt="premio">
+
+        <img id="relogio" src="recursos/relogio.png" alt="relogio">
+
+        <img id="botaoPausa" src="recursos/pausa.png" alt="botão Pausa">
+
+        <img id="casa" src="recursos/casa1.png" alt="casa">
+
+
+
+        <audio id="aroundTheWorldPeq" src="recursos/sons/AroundTheWorldPeq.mp3"></audio>
+        <audio id="harderBetterFasterPeq" src="recursos/sons/HarderBetterFasterPeq.mp3"></audio>
+        <audio id="oneMoreTimePeq" src="recursos/sons/OneMoreTimePeq.mp3"></audio>
+        <audio id="getLuckyPeq" src="recursos/sons/GetLuckyPeq.mp3"></audio>
+
+        <audio id="salta" src="recursos/sons/saltar.mp3"></audio>
+        <audio id="perdeVida" src="recursos/sons/perdeVida.mp3"></audio>
+        <audio id="ganhaVida" src="recursos/sons/ganharVida.mp3"></audio>
+        <audio id="apanharNota" src="recursos/sons/apanharNota.mp3"></audio>
+
+        <audio id="aroundTheWorld" src="recursos/sons/AroundTheWorld.mp3"></audio>
+        <audio id="harderBetterFaster" src="recursos/sons/HarderBetterFaster.mp3"></audio>
+        <audio id="oneMoreTime" src="recursos/sons/OneMoreTime.mp3"></audio>
+        <audio id="getLucky" src="recursos/sons/GetLucky.mp3"></audio>
+        <!-- ... -->
+    </div>
+    
+
+</body>
+
+</html>
